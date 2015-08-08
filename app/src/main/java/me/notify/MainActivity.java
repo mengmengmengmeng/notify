@@ -1,5 +1,6 @@
 package me.notify;
 
+import android.annotation.SuppressLint;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 /**
  * Created by David Rommel, B. on 8/8/15.
  */
+@SuppressLint("NewApi")
 public class MainActivity extends BaseActivity implements OnClickListener{
     private ViewPager viewpager;
     TextView all, subscribed, hosted;
@@ -65,7 +67,7 @@ public class MainActivity extends BaseActivity implements OnClickListener{
         switch (v.getId()) {
 
             case R.id.all:
-                viewpager.setCurrentItem(1);
+                viewpager.setCurrentItem(0);
                 int sdk = android.os.Build.VERSION.SDK_INT;
                 if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
                     all.setBackgroundDrawable( getResources().getDrawable(R.drawable.tab_style_background_with_indicator));
@@ -79,7 +81,7 @@ public class MainActivity extends BaseActivity implements OnClickListener{
                 break;
 
             case R.id.hosted:
-                viewpager.setCurrentItem(0);
+                viewpager.setCurrentItem(1);
                 sdk = android.os.Build.VERSION.SDK_INT;
                 if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
                     hosted.setBackgroundDrawable( getResources().getDrawable(R.drawable.tab_style_background_with_indicator));
@@ -93,7 +95,7 @@ public class MainActivity extends BaseActivity implements OnClickListener{
                 break;
 
             case R.id.subscribed:
-                viewpager.setCurrentItem(1);
+                viewpager.setCurrentItem(2);
                 sdk = android.os.Build.VERSION.SDK_INT;
                 if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
                     subscribed.setBackgroundDrawable( getResources().getDrawable(R.drawable.tab_style_background_with_indicator));

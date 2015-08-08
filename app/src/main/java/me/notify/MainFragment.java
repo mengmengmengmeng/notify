@@ -6,13 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 /**
- * A placeholder fragment containing a simple view.
+ * Created by David Rommel, B. on 8/8/15.
  */
-public class MainActivityFragment extends Fragment {
+public class MainFragment extends Fragment {
 
-    public MainActivityFragment() {
+    public MainFragment() {
     }
 
     @Override

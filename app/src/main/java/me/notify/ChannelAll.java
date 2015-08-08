@@ -159,7 +159,7 @@ public class ChannelAll extends Fragment {
                         data.setChannel(obj_data.getString("id"), obj_data.getString("title"),
                                 obj_data.getString("description"), obj_data.getString("status"),
                                 obj_data.getString("category"), obj_data.getString("logo"),
-                                obj_data.getString("subscribers_count"));
+                                obj_data.getString("subscribers_count"), obj_data.getString("owner_id"));
 
                         list.add(data);
 
@@ -189,12 +189,15 @@ public class ChannelAll extends Fragment {
                     @Override
                     public void onItemClick(AdapterView<?> arg0, View arg1,int position, long arg3)
                     {
-                        /*Intent intent = new Intent(getActivity(), HealthCareAnnouncementDetails.class);
-                        intent.putExtra("id", listAnnouncement.get(position).getId());
-                        intent.putExtra("title", listAnnouncement.get(position).getTitle());
-                        intent.putExtra("description", listAnnouncement.get(position).getDescription());
-                        intent.putExtra("date", listAnnouncement.get(position).getUpdatedAt());
-                        startActivity(intent);*/
+                        Intent intent = new Intent(getActivity(), ChannelPage.class);
+                        intent.putExtra("id", list.get(position).getId());
+                        intent.putExtra("title", list.get(position).getTitle());
+                        intent.putExtra("description", list.get(position).getDescription());
+                        intent.putExtra("category", list.get(position).getCategory());
+                        intent.putExtra("logo", list.get(position).getLogo());
+                        intent.putExtra("count", list.get(position).getSubscribers_count());
+                        intent.putExtra("owner_id", list.get(position).getOwner_id());
+                        startActivity(intent);
                     }
                 });
                 listAdapter.notifyDataSetChanged();

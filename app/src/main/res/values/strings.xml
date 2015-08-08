@@ -5,4 +5,18 @@
 
     <string name="register">http://192.168.43.11:3000/api/v1/users</string>
     <string name="login">http://192.168.43.11:3000/api/v1/sessions</string>
+
+    <string-array name="category_arrays">
+        <item>Events</item>
+        <item>Public Figure</item>
+        <item>Group</item>
+        <item>Disaster</item>
+        <item>Emergency</item>
+        <item>Others</item>
+    </string-array>
+
+    <string-array name="status_arrays">
+        <item>true</item>
+        <item>false</item>
+    </string-array>
 </resources>

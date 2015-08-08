@@ -1,6 +1,7 @@
 package me.notify;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -54,7 +55,8 @@ public class ChannelAll extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getActivity(), CreateChannelActivity.class);
+                startActivity(intent);
             }
         });
         //new getAnnouncement().execute();

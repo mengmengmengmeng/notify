@@ -1,9 +1,12 @@
 package me.notify;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.util.Log;
+import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -36,10 +39,18 @@ public class TaskRegister {
         this.password = password;
     }
 
+    public void executeRegistration() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            new registerUser().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+        } else {
+            new registerUser().execute();
+        }
+    }
+
     public class registerUser extends AsyncTask<String,Integer,Boolean>
     {
 
-        String str ="", return_response="";
+        String str ="";
         HttpResponse response;
         @Override
         protected Boolean doInBackground(String... params) {
@@ -51,18 +62,18 @@ public class TaskRegister {
                 MultipartEntity entity = new MultipartEntity(
                         HttpMultipartMode.BROWSER_COMPATIBLE, boundary, null);
 
-                entity.addPart("first_name", new StringBody(first_name));
-                entity.addPart("last_name", new StringBody(last_name));
-               // entity.addPart("age", new StringBody(username));
-                entity.addPart("mobile_number", new StringBody(email));
-                entity.addPart("email", new StringBody(password));
-                entity.addPart("password", new StringBody(password));
+                entity.addPart("user[first_name]", new StringBody(first_name));
+                entity.addPart("user[last_name]", new StringBody(last_name));
+                entity.addPart("user[age]", new StringBody(age));
+                entity.addPart("user[mobile_number]", new StringBody(mobile_number));
+                entity.addPart("user[email]", new StringBody(email));
+                entity.addPart("user[password]", new StringBody(password));
                 //entity.addPart("birthday", new StringBody(birthday));
                 //entity.addPart("avatar", new FileBody(file, "image/jpeg"));
 
                 HttpPost do_this = new HttpPost(context.getString(R.string.register));
-                do_this.addHeader("Content-Type", "multipart/form-data; boundary="
-                        + boundary);
+                /*do_this.addHeader("Content-Type", "multipart/form-data; boundary="
+                        + boundary);*/
                 //do_this.addHeader(new BasicHeader("Authorization", preferences.getString("token", "")));
                 do_this.setEntity(entity);
                 response = client.execute(do_this);
@@ -81,6 +92,7 @@ public class TaskRegister {
                 else
                 {
                     str="Registration Failed : "+responseBody + "  "+ response.getStatusLine().getStatusCode();
+                    Log.v(" ", str);
                     successlogin=false;
                 }
 
@@ -93,9 +105,10 @@ public class TaskRegister {
         }
         protected void onPostExecute(Boolean result) {
             if(result){
-
+                Intent intent = new Intent(context, MainActivity.class);
+                context.startActivity(intent);
             }else{
-
+                Toast.makeText(context, "SAD", Toast.LENGTH_LONG).show();
             }
 
         }

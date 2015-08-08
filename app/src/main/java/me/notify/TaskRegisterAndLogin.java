@@ -159,6 +159,7 @@ public class TaskRegisterAndLogin {
                     editor.putString("last_name", checkIfNull.check_if_null(me.getString("last_name")));
                     editor.putString("age", checkIfNull.check_if_null(me.getString("age")));
                     editor.putString("auth_token", checkIfNull.check_if_null(me.getString("auth_token")));
+                    editor.apply();
 
                 } catch (JSONException e) {
                     e.printStackTrace();

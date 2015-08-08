@@ -26,5 +26,13 @@ public class FirstActivity extends Activity{
                 startActivity(intent);
             }
         });
+
+        frameLlogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FirstActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

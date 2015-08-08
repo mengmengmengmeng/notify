@@ -9,12 +9,12 @@ import android.widget.FrameLayout;
 /**
  * Created by David Rommel, B. on 8/8/15.
  */
-public class LoginActivity extends Activity{
+public class FirstActivity extends Activity{
     FrameLayout frameLcreateAccount, frameLlogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_activity);
+        setContentView(R.layout.first_activity);
 
         frameLcreateAccount = (FrameLayout) findViewById(R.id.frameLcreateAccount);
         frameLlogin = (FrameLayout) findViewById(R.id.frameLlogin);
@@ -22,7 +22,7 @@ public class LoginActivity extends Activity{
         frameLcreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+                Intent intent = new Intent(FirstActivity.this, RegistrationActivity.class);
                 startActivity(intent);
             }
         });

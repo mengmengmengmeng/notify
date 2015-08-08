@@ -51,7 +51,7 @@ public class CreateChannelActivity extends BaseActivity implements ImageChooserL
     FrameLayout frameLsubmit;
     SharedPreferences preferences;
     ImageView setPhoto;
-    private int chooserType;
+    int chooserType;
     private ImageChooserManager imageChooserManager;
     File file;
     String filePath;
@@ -101,7 +101,6 @@ public class CreateChannelActivity extends BaseActivity implements ImageChooserL
         if (resultCode == RESULT_OK
                 && (requestCode == ChooserType.REQUEST_PICK_PICTURE || requestCode == ChooserType.REQUEST_CAPTURE_PICTURE)) {
             imageChooserManager.submit(requestCode, data);
-        } else {
         }
     }
 
@@ -119,18 +118,12 @@ public class CreateChannelActivity extends BaseActivity implements ImageChooserL
             @Override
             public void onClick(View v) {
                 chooseImage();
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("preview_image", "1");
-                editor.commit();
             }
         });
         camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 takePicture();
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("preview_image", "2");
-                editor.commit();
             }
         });
 
@@ -219,11 +212,9 @@ public class CreateChannelActivity extends BaseActivity implements ImageChooserL
                 entity.addPart("channel[logo]", new FileBody(file, "image/jpeg"));
 
                 String url = getString(R.string.create_channel)+ preferences.getString("id", "")+"/channels";
-                Log.v("URLLLL", url);
                 HttpPost do_this = new HttpPost(url);
                 do_this.addHeader("Content-Type", "multipart/form-data; boundary="
                         + boundary);
-                Log.v("AUTH_TOKEN", preferences.getString("auth_token", ""));
                 do_this.addHeader(new BasicHeader("Authorization", preferences.getString("auth_token", "")));
                 do_this.setEntity(entity);
                 response = client.execute(do_this);
@@ -233,15 +224,11 @@ public class CreateChannelActivity extends BaseActivity implements ImageChooserL
                 if(response.getStatusLine().getStatusCode() == 201)
                 {
                     successlogin=true;
-                    Log.v("HEHE", "YEY");
                 }else if(response.getStatusLine().getStatusCode() == 200){
                     successlogin=true;
-                    Log.v("HEHE", "YEY");
                 }
                 else
                 {
-                    str="Registration Failed : "+responseBody + "  "+ response.getStatusLine().getStatusCode();
-                    Log.v("HEHE", str);
                     successlogin=false;
                 }
 

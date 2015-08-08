@@ -18,7 +18,7 @@ public class RegistrationFragment extends Fragment {
     EditText first_name, last_name, age, mobile_number, email, password;
     FrameLayout frameLsubmit;
     SharedPreferences preferences;
-    TaskRegister taskRegister;
+    TaskRegisterAndLogin taskRegisterAndLogin;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,11 +45,11 @@ public class RegistrationFragment extends Fragment {
                 }else if(password.length() < 8){
                     Toast.makeText(getActivity(), "Password is too short (minimum is 8 characters)! :)", Toast.LENGTH_LONG).show();
                 }else{
-                    taskRegister = new TaskRegister(getActivity(), preferences,
+                    taskRegisterAndLogin = new TaskRegisterAndLogin(getActivity(), preferences,
                             first_name.getText().toString(), last_name.getText().toString(), age.getText().toString(), mobile_number.getText().toString(),
-                            email.getText().toString(), password.getText().toString());
+                            email.getText().toString(), password.getText().toString(), TaskRegisterAndLogin.REGISTER);
 
-                    taskRegister.executeRegistration();
+                    taskRegisterAndLogin.executeRegistration();
                 }
             }
         });

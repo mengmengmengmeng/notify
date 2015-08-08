@@ -2,4 +2,6 @@
     <string name="app_name">Notify</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="register">http://192.168.43.255:3000/api/users</string>
 </resources>

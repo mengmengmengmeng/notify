@@ -1,5 +1,6 @@
 package me.notify;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,6 +27,7 @@ public class TaskRegister {
     SharedPreferences preferences;
     Context context;
     String first_name, last_name, age, mobile_number, email, password;
+    ProgressDialog prog;
 
     public TaskRegister(Context context, SharedPreferences preferences, String first_name,
                         String last_name, String age, String mobile_number, String email, String password){
@@ -52,6 +54,15 @@ public class TaskRegister {
 
         String str ="";
         HttpResponse response;
+
+        @Override
+        protected void onPreExecute() {
+            prog = new ProgressDialog(context);
+            prog.setMessage("Please wait..");
+            prog.show();
+            prog.setCancelable(false);
+        }
+
         @Override
         protected Boolean doInBackground(String... params) {
             boolean successlogin;
@@ -104,11 +115,12 @@ public class TaskRegister {
             return successlogin;
         }
         protected void onPostExecute(Boolean result) {
+            prog.dismiss();
             if(result){
                 Intent intent = new Intent(context, MainActivity.class);
                 context.startActivity(intent);
             }else{
-                Toast.makeText(context, "SAD", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Email is invalid", Toast.LENGTH_LONG).show();
             }
 
         }

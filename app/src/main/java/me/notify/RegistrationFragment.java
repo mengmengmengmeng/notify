@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 /**
  * Created by David Rommel, B. on 8/8/15.
@@ -35,11 +36,21 @@ public class RegistrationFragment extends Fragment {
         frameLsubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               taskRegister = new TaskRegister(getActivity(), preferences,
-                        first_name.getText().toString(), last_name.getText().toString(), age.getText().toString(), mobile_number.getText().toString(),
-                        email.getText().toString(), password.getText().toString());
+                if(last_name.length() == 0 || first_name.length() == 0 ||
+                        age.length() == 0 || mobile_number.length() == 0 ||
+                        email.length() == 0 || password.length() == 0){
 
-                taskRegister.executeRegistration();
+                    Toast.makeText(getActivity(), "Please fill all values! :)", Toast.LENGTH_LONG).show();
+
+                }else if(password.length() < 8){
+                    Toast.makeText(getActivity(), "Password is too short (minimum is 8 characters)! :)", Toast.LENGTH_LONG).show();
+                }else{
+                    taskRegister = new TaskRegister(getActivity(), preferences,
+                            first_name.getText().toString(), last_name.getText().toString(), age.getText().toString(), mobile_number.getText().toString(),
+                            email.getText().toString(), password.getText().toString());
+
+                    taskRegister.executeRegistration();
+                }
             }
         });
 

@@ -10,11 +10,11 @@ import android.view.MenuItem;
  * Created by David Rommel, B. on 8/8/15.
  */
 public class BaseActivity extends ActionBarActivity {
-
+    ActionBar actionBar;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ActionBar actionBar = getSupportActionBar();
+        actionBar = getSupportActionBar();
 
         actionBar.setDisplayHomeAsUpEnabled(true);
 

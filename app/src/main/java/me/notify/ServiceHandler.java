@@ -24,27 +24,16 @@ public class ServiceHandler {
     static String response = null;
     public final static int GET = 1;
     public final static int POST = 2;
+    String reply;
 
     public ServiceHandler() {
 
     }
-
-    /**
-     * Making service call
-     * @url - url to make request
-     * @method - http request method
-     * */
-    public String makeServiceCall(String url, int method) {
-        return this.makeServiceCall(url, method, null);
+    public String makeServiceCall(String url, String token, int method) {
+        return this.makeServiceCall(url, token, method, null);
     }
 
-    /**z
-     * Making service call
-     * @url - url to make request
-     * @method - http request method
-     * @params - http request params
-     * */
-    public String makeServiceCall(String url, int method,
+    public String makeServiceCall(String url, String token, int method,
                                   List<NameValuePair> params) {
         try {
             // http client
@@ -67,6 +56,7 @@ public class ServiceHandler {
                     url += "?" + paramString;
                 }
                 HttpGet httpGet = new HttpGet(url);
+                httpGet.addHeader("Authorization" , token);
 
                 httpResponse = httpClient.execute(httpGet);
 

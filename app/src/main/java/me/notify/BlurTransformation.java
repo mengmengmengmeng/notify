@@ -1,9 +1,5 @@
 package me.notify;
 
-/**
- * Created by David Rommel, B. on 8/9/15.
- */
-
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Bitmap;

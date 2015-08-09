@@ -147,7 +147,7 @@ public class ChannelAll extends Fragment {
                 ServiceHandler sh = new ServiceHandler();
                 String url = getString(R.string.all_channels);
 
-                str = sh.makeServiceCall(url, ServiceHandler.GET);
+                str = sh.makeServiceCall(url, preferences.getString("auth_token", ""), ServiceHandler.GET);
 
                 try{
                     JSONArray newJson = new JSONArray(str);

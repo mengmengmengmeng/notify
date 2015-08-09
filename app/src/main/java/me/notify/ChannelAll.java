@@ -8,10 +8,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -55,14 +55,6 @@ public class ChannelAll extends Fragment {
             public void onScrollUp() {
                 fab.hide();
             }
-        }, new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-            }
         });
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -72,11 +64,6 @@ public class ChannelAll extends Fragment {
                 startActivity(intent);
             }
         });
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            new getChannel().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-        } else {
-            new getChannel().execute();
-        }
         return v;
 
     }
@@ -204,5 +191,25 @@ public class ChannelAll extends Fragment {
             }
         }
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.v("ASDSADASD", "NOOOOOOOOO");
+        if(list!=null){
+            list.clear();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                new getChannel().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            } else {
+                new getChannel().execute();
+            }
+        }else{
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                new getChannel().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            } else {
+                new getChannel().execute();
+            }
+        }
     }
 }

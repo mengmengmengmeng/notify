@@ -10,7 +10,9 @@
     <string name="announcements">http://192.168.43.11:3000/api/v1/users/</string>
     <string name="subscribe">http://192.168.43.11:3000/api/v1/channels/</string>
     <string name="create_announcement">http://192.168.43.11:3000/api/v1/users/</string>
-    /api/v1/users/:user_id/channels/:channel_id/announcements
+
+
+    <string name="hosted">http://192.168.43.11:3000/api/v1/users/</string>
 
 
     <string-array name="category_arrays">

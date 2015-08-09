@@ -82,7 +82,7 @@ public class MainActivity extends BaseActivity implements OnClickListener{
                 break;
 
             case R.id.hosted:
-                viewpager.setCurrentItem(1);
+                viewpager.setCurrentItem(2);
                 sdk = android.os.Build.VERSION.SDK_INT;
                 if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
                     hosted.setBackgroundDrawable( getResources().getDrawable(R.drawable.tab_style_background_with_indicator));
@@ -96,7 +96,7 @@ public class MainActivity extends BaseActivity implements OnClickListener{
                 break;
 
             case R.id.subscribed:
-                viewpager.setCurrentItem(2);
+                viewpager.setCurrentItem(1);
                 sdk = android.os.Build.VERSION.SDK_INT;
                 if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
                     subscribed.setBackgroundDrawable( getResources().getDrawable(R.drawable.tab_style_background_with_indicator));

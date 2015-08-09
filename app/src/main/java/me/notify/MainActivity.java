@@ -30,6 +30,7 @@ public class MainActivity extends BaseActivity implements OnClickListener{
         actionBar.setStackedBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.grayy)));
 
         actionBar.setTitle("Channel");
+        viewpager.setOffscreenPageLimit(3);
 
         viewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 

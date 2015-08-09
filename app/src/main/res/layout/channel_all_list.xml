@@ -52,13 +52,13 @@
                 android:id="@+id/category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="10sp"
                 android:text="Events"
                 android:ellipsize="end"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:background="#353A3E"
                 android:textColor="#EF8F52"/>
 

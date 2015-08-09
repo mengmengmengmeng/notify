@@ -2,6 +2,7 @@ package me.notify;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -89,6 +90,15 @@ public class ChannelPage extends BaseActivity {
             @Override
             public void onClick(View view) {
                 openCoachMark();
+            }
+        });
+
+        create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ChannelPage.this, CreateAnnouncement.class);
+                intent.putExtra("channel_id", id);
+                startActivity(intent);
             }
         });
 
